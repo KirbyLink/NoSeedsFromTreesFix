@@ -19,7 +19,7 @@ namespace NoSeedsfromTreeFix
         {
             //Harmony patcher
             //https://github.com/kjryanreeves/NoSeedsFromTreesFix.git
-            var harmony = HarmonyInstance.Create("com.github.kjryanreeves.noseedsfromtreesfix");
+            var harmony = HarmonyInstance.Create("com.github.kirbylink.noseedsfromtreesfix");
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
         }
     }
