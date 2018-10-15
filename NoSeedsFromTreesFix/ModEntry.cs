@@ -1,6 +1,7 @@
 ﻿using Harmony;
 using StardewModdingAPI;
 using StardewValley;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -26,6 +27,7 @@ namespace NoSeedsfromTreeFix
 
     [HarmonyPatch(typeof(Farmer))]
     [HarmonyPatch("getEffectiveSkillLevel")]
+    [HarmonyPatch(new Type[] { typeof(int) })]
     public static class PatchGetEffectiveSkillLevel
     {
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
