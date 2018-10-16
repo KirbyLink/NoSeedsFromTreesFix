@@ -19,7 +19,7 @@ namespace NoSeedsfromTreeFix
         public override void Entry(IModHelper helper)
         {
             //Harmony patcher
-            //https://github.com/kjryanreeves/NoSeedsFromTreesFix.git
+            //https://github.com/kirbylink/NoSeedsFromTreesFix.git
             var harmony = HarmonyInstance.Create("com.github.kirbylink.noseedsfromtreesfix");
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
         }
