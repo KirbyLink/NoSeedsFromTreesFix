@@ -20,7 +20,7 @@ namespace NoSeedsFromTreeFix
             //https://github.com/kirbylink/NoSeedsFromTreesFix.git
             var harmony = HarmonyInstance.Create("com.github.kirbylink.noseedsfromtreesfix");
             var original = typeof(Farmer).GetMethod("getEffectiveSkillLevel", new Type[] { typeof(int) });
-            var postfix = typeof(NoSeedsFromTreeFix.PatchGetEffectiveSkillLevel).GetMethod("Postfix");
+            var postfix = typeof(NoSeedsFromTreeFix.PatchGetEffectiveSkillLevel).GetMethod("Postfix", BindingFlags.Static | BindingFlags.NonPublic);
             harmony.Patch(original, null, new HarmonyMethod(postfix));
         }
 
