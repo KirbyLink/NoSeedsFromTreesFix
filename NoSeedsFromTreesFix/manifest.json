@@ -6,5 +6,5 @@
    "UniqueID": "kirbylink.noseedsfromtreesfix",
    "EntryDll": "noseedsfromtreesfix.dll",
    "MinimumApiVersion": "2.0",
-   "UpdateKeys": [2947]
+   "UpdateKeys": ["Nexus:2947"]
 }

@@ -1,15 +1,10 @@
 ﻿using Harmony;
-using Microsoft.Xna.Framework;
-using Netcode;
 using StardewModdingAPI;
 using StardewValley;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 
-namespace NoSeedsfromTreeFix
+namespace NoSeedsFromTreeFix
 {
     /// <summary>The mod entry point.</summary>
     public class ModEntry : Mod
@@ -24,13 +19,8 @@ namespace NoSeedsfromTreeFix
             //Harmony patcher
             //https://github.com/kirbylink/NoSeedsFromTreesFix.git
             var harmony = HarmonyInstance.Create("com.github.kirbylink.noseedsfromtreesfix");
-            this.Apply(harmony);
-        }
-
-        public void Apply(HarmonyInstance harmony)
-        {
-            var original = typeof(Farmer).GetMethod("getEffectiveSkillLevel");
-            var postfix = typeof(PatchGetEffectiveSkillLevel).GetMethod("Postfix");
+            var original = typeof(Farmer).GetMethod("getEffectiveSkillLevel", new Type[] { typeof(int) });
+            var postfix = typeof(NoSeedsFromTreeFix.PatchGetEffectiveSkillLevel).GetMethod("Postfix");
             harmony.Patch(original, null, new HarmonyMethod(postfix));
         }
 
@@ -46,7 +36,11 @@ namespace NoSeedsfromTreeFix
                 Possible Fix: Line 1661 of Farmer.cs should be a simple decrement or -= 1 statement
                 instead of using the newLevels.Y value
             */
-            if (whichSkill < 0 || whichSkill > 5) return;
+            if (whichSkill < 0 || whichSkill > 5)
+            {
+                return;
+            }
+
             int[] numArray = new int[6]
             {
                 __instance.farmingLevel.Value,
